@@ -7,6 +7,12 @@ workbench:
     enabled: false
     uisrc: ""
   name: "Labs Workbench"
+  landing_html: | 
+    <p>Labs Workbench is an environment where developers can prototype tools and capabilities that help build out the NDS framework and services.</p>
+    <p>In particular, it is a place that can host the development activities of <a href='http://www.nationaldataservice.org/projects/pilots.html'>NDS pilot projects.</a></p>
+  brand_logo_path: "../asset/png/favicon-32x32.png"
+  favicon_path: "../asset/png/favicon-16x16.png"
+  learn_more_url: "http://www.nationaldataservice.org/platform/workbench.html"
   domain: "local.ndslabs.org"
   subdomain_prefix: "www"
   volume_name: "global"
@@ -15,6 +21,7 @@ workbench:
   support_email: "ndslabs-support@nationaldataservice.org"
   analytics_tracking_id: ""
   require_account_approval: true
+  strategyType: "RollingUpdate"
   specs:
     repo: "https://github.com/nds-org/ndslabs-specs.git"
     branch: "master"
@@ -45,16 +52,27 @@ workbench:
   timeout: 30
   inactivity_timeout: 480
 
-# FIXME: This has not been tested
+  # Enable optional UI features (default is true)
+  advanced_features:
+    show_config: true
+    show_logs: true
+    show_console: true
+    show_remove_service: true
+    show_edit_service: true
+    show_service_help_icon: true
+    show_create_spec: true
+    show_import_spec: true
+    show_file_manager: true
+
 oauth:
   enabled: false
-  signin_url: ""
-  auth_url: ""
+  signin_url: "https://$host/login/"
+  auth_url: "https://$host/cauth/auth"
+  auth_response_headers: "x-auth-request-user, x-auth-request-email" # , x-auth-request-access-token, x-auth-request-redirect, x-auth-request-preferred-username"
 
 certmgr:
   cluster_issuer: "acmedns-issuer"
   issuer: ""
-  namespace: ""
 
 rbac:
   enabled: true
